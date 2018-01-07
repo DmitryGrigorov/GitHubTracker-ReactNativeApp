@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Separator from './Separator';
 
 import {
   Text,
@@ -48,6 +49,7 @@ export default class Profile extends Component {
           <View key={index} style={styles.rowContainer}>
             <Text style={styles.rowTitle}> {this.getRowTitle(item)} </Text>
             <Text style={styles.rowContent}> {userInfo[item]} </Text>
+            <Separator/>
           </View>
         )
       }
