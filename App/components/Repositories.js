@@ -7,6 +7,7 @@ import {
   StyleSheet
 } from 'react-native';
 import PropTypes from 'prop-types';
+import WebView from './WebView';
 
 import Badge from './Badge';
 import Separator from './Separator'
@@ -43,7 +44,11 @@ export default class Repositories extends Component {
   };
 
   openPage(url){
-    console.log('the url is ', url);
+    this.props.navigator.push({
+      component: WebView,
+      title: 'Web View',
+      passProps: { url }
+    });
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Profile from './Profile'
 import Repositories from './Repositories'
+import Notes from './Notes'
 import { API } from '../utils/api'
 
 import { 
@@ -50,7 +51,6 @@ export default class Dashboard extends Component {
   }
 
   goToProfile = () => {
-    console.log('Go to Profile', this.props.userInfo)
     this.props.navigator.push({
       name: 'Profile',
       component: Profile,
@@ -59,11 +59,10 @@ export default class Dashboard extends Component {
   }
 
   goToRepos = () => {
-    console.log('Go to Repos')
     API
       .getRepos(this.props.userInfo.login)
       .then((res) => {
-        console.log('goToRepos ', res)
+
         this.props.navigator.push({
           name: 'Repositories',
           component: Repositories,
@@ -77,7 +76,20 @@ export default class Dashboard extends Component {
   }
 
   goToNotes = () => {
-    console.log('Go to Notes')
+    API
+      .getNotes(this.props.userInfo.login)
+      .then((res) => {
+        res = res || {}
+        this.props.navigator.push({
+          name: 'Notes',
+          component: Notes,
+          passProps: {
+            userInfo: this.props.userInfo,
+            notes: res
+          }
+        })
+      })
+    ;
   }
   
   render() {

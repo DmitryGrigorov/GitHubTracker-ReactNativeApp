@@ -36,7 +36,6 @@ var styles = StyleSheet.create({
 export default class Badge extends Component {
   render() {
     const { userInfo = {} } = this.props;
-    console.log('userInfo in badge', userInfo);
     return (
       <View style={styles.container}>
         <Image

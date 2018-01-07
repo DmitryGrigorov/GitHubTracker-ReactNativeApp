@@ -38,7 +38,6 @@ export default class Profile extends Component {
   }
   render() {
     var userInfo = this.props.userInfo;
-    console.log('userInfo in profile', userInfo);
     var topicArr = ['company', 'location', 'followers', 'following', 'email',
                     'bio', 'public_repos'];
     var list = topicArr.map((item, index) => {
