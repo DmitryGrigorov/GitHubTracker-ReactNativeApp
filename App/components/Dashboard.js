@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Profile from './Profile'
+import Repositories from './Repositories'
+import { API } from '../utils/api'
 
 import { 
   View,
@@ -28,11 +30,6 @@ var styles = StyleSheet.create({
 });
 
 export default class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   makeBackground(btn) {
     const obj = {
       flexDirection: 'row',
@@ -63,6 +60,20 @@ export default class Dashboard extends Component {
 
   goToRepos = () => {
     console.log('Go to Repos')
+    API
+      .getRepos(this.props.userInfo.login)
+      .then((res) => {
+        console.log('goToRepos ', res)
+        this.props.navigator.push({
+          name: 'Repositories',
+          component: Repositories,
+          passProps: {
+            userInfo: this.props.userInfo,
+            repos: res
+          }
+        })
+      })
+    ;
   }
 
   goToNotes = () => {
